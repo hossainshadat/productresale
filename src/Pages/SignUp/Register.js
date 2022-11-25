@@ -33,7 +33,7 @@ const Register = () => {
               const user = userCredential.user;
 
               toast.success("User created Successfully");
-              reset(data);
+              //   form.reset();
               // User Name and Photo Updated
               updateNamePhoto(name, image)
                 .then(() => toast.success("Updated Name and Photo"))

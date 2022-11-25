@@ -1,10 +1,40 @@
-import React from "react";
+import React, { useContext } from "react";
 import { useForm } from "react-hook-form";
-import { Link } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
+import { toast } from "react-toastify";
+import { AuthContext } from "../../contexts/AuthProvider/AuthProvider";
 
 const Login = () => {
   const { register, handleSubmit } = useForm();
-  const onSubmit = (data) => console.log(data);
+  const { login, googleLogIn } = useContext(AuthContext);
+
+  const navigate = useNavigate();
+  const location = useLocation();
+  const from = location.state?.from?.pathname || "/";
+
+  const handleLogIn = (data) => {
+    const { email, password } = data;
+    login(email, password)
+      .then((result) => {
+        const user = result.user;
+
+        // form.reset();
+        toast.success("Successfully Login");
+        navigate(from, { replace: true });
+      })
+      .catch((err) => toast.error(err));
+  };
+
+  const handleGoogleLogIn = () => {
+    googleLogIn()
+      .then(() => {
+        toast.success("Success Fully Login");
+        navigate(from, { replace: true });
+      })
+      .catch((err) => toast.error(err));
+  };
+
+  //   const onSubmit = (data) => console.log(data);
   return (
     <div className="flex mx-auto my-16 flex-col max-w-md p-6 rounded-md sm:p-10 dark:bg-gray-900 dark:text-gray-100">
       <div className="mb-8 text-center">
@@ -14,7 +44,7 @@ const Login = () => {
         </p>
       </div>
       <form
-        onSubmit={handleSubmit(onSubmit)}
+        onSubmit={handleSubmit(handleLogIn)}
         noValidate=""
         action=""
         className="space-y-12 ng-untouched ng-pristine ng-valid"
@@ -74,7 +104,11 @@ const Login = () => {
             <div className="flex-1 h-px sm:w-16 dark:bg-gray-700"></div>
           </div>
           <div className="flex justify-center space-x-4">
-            <button aria-label="Log in with Google" className="p-3 rounded-sm">
+            <button
+              onClick={handleGoogleLogIn}
+              aria-label="Log in with Google"
+              className="p-3 rounded-sm"
+            >
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 viewBox="0 0 32 32"
