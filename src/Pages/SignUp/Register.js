@@ -1,14 +1,17 @@
-import React from "react";
+import React, { useContext } from "react";
 import { useForm } from "react-hook-form";
+import { AuthContext } from "../../contexts/AuthProvider/AuthProvider";
+import { toast } from "react-toastify";
 
 const Register = () => {
-  const { register, handleSubmit } = useForm();
+  const { register, handleSubmit, reset } = useForm();
+  const { createUser, updateNamePhoto } = useContext(AuthContext);
   const imageHostKey = process.env.REACT_APP_imgbb_key;
 
   const handleRegister = (data) => {
-    const image = data.image[0];
+    const img = data.image[0];
     const formData = new FormData();
-    formData.append("image", image);
+    formData.append("image", img);
 
     const url = `https://api.imgbb.com/1/upload?expiration=600&key=${imageHostKey}`;
 
@@ -20,9 +23,27 @@ const Register = () => {
       .then((result) => {
         if (result.success) {
           data.image = result.data.url;
+
+          const { name, image, email, password } = data;
+
+          // CreateUser
+
+          createUser(email, password)
+            .then((userCredential) => {
+              const user = userCredential.user;
+
+              toast.success("User created Successfully");
+              reset(data);
+              // User Name and Photo Updated
+              updateNamePhoto(name, image)
+                .then(() => toast.success("Updated Name and Photo"))
+                .catch((err) => toast.error(err));
+            })
+            .catch((error) => {
+              console.log(error);
+            });
         }
       });
-    console.log(data);
   };
 
   return (
