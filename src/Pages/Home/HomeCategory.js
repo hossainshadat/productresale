@@ -1,12 +1,83 @@
-import React from "react";
+import axios from "axios";
+import React, { useEffect, useState } from "react";
+import HomeCardCategory from "./HomeCard/HomeCardCategory";
 
 const HomeCategory = () => {
+  const [categories, setCategories] = useState([]);
+
+  const getCategory = () => {
+    axios.get("http://localhost:5000/category").then((res) => {
+      setCategories(res.data.data);
+    });
+  };
+
+  useEffect(() => getCategory(), []);
+
+  const category = [
+    {
+      id: "01",
+      name: "Apple",
+      image:
+        "https://yt3.ggpht.com/ytc/AMLnZu9GlNEvcXPblRUvW11GS3buDikRNugBjnPlZ_1rew=s900-c-k-c0x00ffffff-no-rj",
+      description:
+        "Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque rem aperiam.",
+    },
+    {
+      id: "02",
+      name: "Acer",
+      image:
+        "https://e7.pngegg.com/pngimages/748/924/png-clipart-acer-logo-laptop-acer-aspire-computer-logo-lenovo-logo-electronics-text.png",
+      description:
+        "Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque rem aperiam.",
+    },
+    {
+      id: "03",
+      name: "Javascript Guideline",
+      image:
+        "https://www.freeiconspng.com/thumbs/dell-logo-icon-png/dell-icon-11.jpg",
+      description:
+        "Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque rem aperiam.",
+    },
+    {
+      id: "04",
+      name: "React (Hook , React Router)",
+      image:
+        "https://yt3.ggpht.com/ytc/AMLnZu9GlNEvcXPblRUvW11GS3buDikRNugBjnPlZ_1rew=s900-c-k-c0x00ffffff-no-rj",
+      description:
+        "Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque rem aperiam.",
+    },
+    {
+      id: "05",
+      name: "React With Firebase",
+      image:
+        "https://yt3.ggpht.com/ytc/AMLnZu9GlNEvcXPblRUvW11GS3buDikRNugBjnPlZ_1rew=s900-c-k-c0x00ffffff-no-rj",
+      description:
+        "Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque rem aperiam.",
+    },
+    {
+      id: "06",
+      name: "Node,React, Express, MongoDB",
+      image:
+        "https://yt3.ggpht.com/ytc/AMLnZu9GlNEvcXPblRUvW11GS3buDikRNugBjnPlZ_1rew=s900-c-k-c0x00ffffff-no-rj",
+      description:
+        "Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque rem aperiam.",
+    },
+    {
+      id: "07",
+      name: "All Course",
+      image:
+        "https://yt3.ggpht.com/ytc/AMLnZu9GlNEvcXPblRUvW11GS3buDikRNugBjnPlZ_1rew=s900-c-k-c0x00ffffff-no-rj",
+      description:
+        "Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque rem aperiam.",
+    },
+  ];
+
   return (
     <div className="px-4 py-16 mx-auto sm:max-w-xl md:max-w-full lg:max-w-screen-xl md:px-24 lg:px-8 lg:py-20">
       <div className="max-w-xl mb-10 md:mx-auto sm:text-center lg:max-w-2xl md:mb-12">
         <div>
           <p className="inline-block px-3 py-px mb-4 text-xs font-semibold tracking-wider text-teal-900 uppercase rounded-full bg-teal-accent-400">
-            Preowned
+            Brand
           </p>
         </div>
         <h2 className="max-w-lg mb-6 font-sans text-3xl font-bold leading-none tracking-tight text-gray-900 sm:text-4xl md:mx-auto">
@@ -39,117 +110,9 @@ const HomeCategory = () => {
         </h2>
       </div>
       <div className="grid gap-8 row-gap-5 lg:grid-cols-3">
-        <div className="relative p-px overflow-hidden transition duration-300 transform border rounded shadow-sm hover:scale-105 group hover:shadow-xl">
-          <div className="absolute bottom-0 left-0 w-full h-1 duration-300 origin-left transform scale-x-0 bg-deep-purple-accent-400 group-hover:scale-x-100" />
-          <div className="absolute bottom-0 left-0 w-1 h-full duration-300 origin-bottom transform scale-y-0 bg-deep-purple-accent-400 group-hover:scale-y-100" />
-          <div className="absolute top-0 left-0 w-full h-1 duration-300 origin-right transform scale-x-0 bg-deep-purple-accent-400 group-hover:scale-x-100" />
-          <div className="absolute bottom-0 right-0 w-1 h-full duration-300 origin-top transform scale-y-0 bg-deep-purple-accent-400 group-hover:scale-y-100" />
-          <div className="relative p-5 bg-white rounded-sm">
-            <div className="flex flex-col mb-2 lg:items-center lg:flex-row">
-              <div className="flex items-center justify-center w-10 h-10 mb-4 mr-2 rounded-full bg-indigo-50 lg:mb-0">
-                <svg
-                  className="w-8 h-8 text-deep-purple-accent-400"
-                  stroke="currentColor"
-                  viewBox="0 0 52 52"
-                >
-                  <polygon
-                    strokeWidth="3"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    fill="none"
-                    points="29 13 14 29 25 29 23 39 38 23 27 23"
-                  />
-                </svg>
-              </div>
-              <h6 className="font-semibold leading-5">The quick, brown fox</h6>
-            </div>
-            <p className="mb-2 text-sm text-gray-900">
-              Sed ut perspiciatis unde omnis iste natus error sit voluptatem
-              accusantium doloremque rem aperiam.
-            </p>
-            <a
-              href="/"
-              aria-label=""
-              className="inline-flex items-center text-sm font-semibold transition-colors duration-200 text-deep-purple-accent-400 hover:text-deep-purple-800"
-            >
-              Learn more
-            </a>
-          </div>
-        </div>
-        <div className="relative p-px overflow-hidden transition duration-300 transform border rounded shadow-sm hover:scale-105 group hover:shadow-xl">
-          <div className="absolute bottom-0 left-0 w-full h-1 duration-300 origin-left transform scale-x-0 bg-deep-purple-accent-400 group-hover:scale-x-100" />
-          <div className="absolute bottom-0 left-0 w-1 h-full duration-300 origin-bottom transform scale-y-0 bg-deep-purple-accent-400 group-hover:scale-y-100" />
-          <div className="absolute top-0 left-0 w-full h-1 duration-300 origin-right transform scale-x-0 bg-deep-purple-accent-400 group-hover:scale-x-100" />
-          <div className="absolute bottom-0 right-0 w-1 h-full duration-300 origin-top transform scale-y-0 bg-deep-purple-accent-400 group-hover:scale-y-100" />
-          <div className="relative p-5 bg-white rounded-sm">
-            <div className="flex flex-col mb-2 lg:items-center lg:flex-row">
-              <div className="flex items-center justify-center w-10 h-10 mb-4 mr-2 rounded-full bg-indigo-50 lg:mb-0">
-                <svg
-                  className="w-8 h-8 text-deep-purple-accent-400"
-                  stroke="currentColor"
-                  viewBox="0 0 52 52"
-                >
-                  <polygon
-                    strokeWidth="3"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    fill="none"
-                    points="29 13 14 29 25 29 23 39 38 23 27 23"
-                  />
-                </svg>
-              </div>
-              <h6 className="font-semibold leading-5">Smooth as an android</h6>
-            </div>
-            <p className="mb-2 text-sm text-gray-900">
-              Sed ut perspiciatis unde omnis iste natus error sit voluptatem
-              accusantium doloremque rem aperiam.
-            </p>
-            <a
-              href="/"
-              aria-label=""
-              className="inline-flex items-center text-sm font-semibold transition-colors duration-200 text-deep-purple-accent-400 hover:text-deep-purple-800"
-            >
-              Learn more
-            </a>
-          </div>
-        </div>
-        <div className="relative p-px overflow-hidden transition duration-300 transform border rounded shadow-sm hover:scale-105 group hover:shadow-xl">
-          <div className="absolute bottom-0 left-0 w-full h-1 duration-300 origin-left transform scale-x-0 bg-deep-purple-accent-400 group-hover:scale-x-100" />
-          <div className="absolute bottom-0 left-0 w-1 h-full duration-300 origin-bottom transform scale-y-0 bg-deep-purple-accent-400 group-hover:scale-y-100" />
-          <div className="absolute top-0 left-0 w-full h-1 duration-300 origin-right transform scale-x-0 bg-deep-purple-accent-400 group-hover:scale-x-100" />
-          <div className="absolute bottom-0 right-0 w-1 h-full duration-300 origin-top transform scale-y-0 bg-deep-purple-accent-400 group-hover:scale-y-100" />
-          <div className="relative p-5 bg-white rounded-sm">
-            <div className="flex flex-col mb-2 lg:items-center lg:flex-row">
-              <div className="flex items-center justify-center w-10 h-10 mb-4 mr-2 rounded-full bg-indigo-50 lg:mb-0">
-                <svg
-                  className="w-8 h-8 text-deep-purple-accent-400"
-                  stroke="currentColor"
-                  viewBox="0 0 52 52"
-                >
-                  <polygon
-                    strokeWidth="3"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    fill="none"
-                    points="29 13 14 29 25 29 23 39 38 23 27 23"
-                  />
-                </svg>
-              </div>
-              <h6 className="font-semibold leading-5">This is about justice</h6>
-            </div>
-            <p className="mb-2 text-sm text-gray-900">
-              Sed ut perspiciatis unde omnis iste natus error sit voluptatem
-              accusantium doloremque rem aperiam.
-            </p>
-            <a
-              href="/"
-              aria-label=""
-              className="inline-flex items-center text-sm font-semibold transition-colors duration-200 text-deep-purple-accent-400 hover:text-deep-purple-800"
-            >
-              Learn more
-            </a>
-          </div>
-        </div>
+        {categories.map((brand) => (
+          <HomeCardCategory key={brand._id} brand={brand} />
+        ))}
       </div>
     </div>
   );

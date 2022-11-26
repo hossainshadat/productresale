@@ -13,7 +13,7 @@ const Register = () => {
     const formData = new FormData();
     formData.append("image", img);
 
-    const url = `https://api.imgbb.com/1/upload?expiration=600&key=${imageHostKey}`;
+    const url = `https://api.imgbb.com/1/upload?key=${imageHostKey}`;
 
     fetch(url, {
       method: "POST",
@@ -98,7 +98,7 @@ const Register = () => {
               required
             >
               <option value="seller">Seller</option>
-              <option value="normalUser">Normal User</option>
+              <option value="buyer">Buyer</option>
             </select>
           </div>
           <div>
