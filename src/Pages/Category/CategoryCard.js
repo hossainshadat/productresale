@@ -1,5 +1,5 @@
 import React from "react";
-
+import { FcApproval } from "react-icons/fc";
 const CategoryCard = ({ category, handleModal }) => {
   const {
     brandName,
@@ -54,9 +54,12 @@ const CategoryCard = ({ category, handleModal }) => {
               aria-label="Category"
               title="traveling"
             >
-              original price
+              original price —{" "}
             </a>
-            <span className="text-gray-600">— {originalPrice} $</span>
+            <span className="text-black-600 font-extrabold">
+              {" "}
+              {originalPrice} $
+            </span>
           </p>
           <p className="mb-3 text-xs font-semibold tracking-wide uppercase">
             <a
@@ -65,24 +68,28 @@ const CategoryCard = ({ category, handleModal }) => {
               aria-label="Category"
               title="traveling"
             >
-              Resale Price
+              Resale Price —{" "}
             </a>
-            <span className="text-gray-600">— {resalePrice} $</span>
+            <span className="text-black-600 font-extrabold">
+              {resalePrice} $
+            </span>
           </p>
-          <p className="mb-3 text-xs font-semibold tracking-wide uppercase">
-            <a
-              href="#"
-              className="transition-colors duration-200 text-blue-gray-900 hover:text-deep-purple-accent-700"
-              aria-label="Category"
-              title="traveling"
-            >
-              Seller Name
-            </a>
-            <span className="text-gray-600">— {sellerName}</span>
-          </p>
-          {/* <div className="flex justify-center">
-            <PrimaryButton>Book Now</PrimaryButton>
-          </div> */}
+          <div className="mb-3 text-xs font-semibold tracking-wide uppercase flex justify-between">
+            <div>
+              <a
+                href="#"
+                className="transition-colors duration-200 text-blue-gray-900 hover:text-deep-purple-accent-700"
+                aria-label="Category"
+                title="traveling"
+              >
+                Seller Name
+              </a>
+              <span className="text-gray-600">— {sellerName}</span>{" "}
+            </div>
+            <span className="text-base">
+              <FcApproval />
+            </span>{" "}
+          </div>
           <label
             onClick={() => handleModal(category)}
             className="inline-flex items-center justify-center h-12 px-6 font-medium tracking-wide text-white transition duration-200 rounded shadow-md bg-deep-purple-accent-400 hover:bg-deep-purple-accent-700 focus:shadow-outline focus:outline-none"
