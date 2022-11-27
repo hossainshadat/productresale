@@ -34,7 +34,6 @@ const CategoryModal = ({ singleProduct }) => {
       phoneNumber,
       bookingDate,
     };
-    console.log(bookingInfo);
 
     fetch("http://localhost:5000/booking", {
       method: "POST",
@@ -46,10 +45,10 @@ const CategoryModal = ({ singleProduct }) => {
       .then((res) => res.json())
       .then((data) => {
         console.log(data);
+        form.reset();
         toast.success("Booking comfirmed");
         if (data.acknowledged) {
           toast.success("Booking comfirmed");
-          form.reset();
         }
       })
       .catch((er) => console.error(er));

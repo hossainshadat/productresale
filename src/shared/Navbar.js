@@ -53,16 +53,7 @@ const Navbar = () => {
               Product
             </a>
           </li>
-          <li>
-            <Link
-              to="/myorders"
-              aria-label="Our product"
-              title="Our product"
-              className="font-medium tracking-wide text-gray-700 transition-colors duration-200 hover:text-deep-purple-accent-400"
-            >
-              Myorders
-            </Link>
-          </li>
+
           <li>
             <Link
               to="/blog"
@@ -77,12 +68,23 @@ const Navbar = () => {
             <>
               <li>
                 <Link
-                  to="/addservice"
+                  to="/myorders"
+                  aria-label="Our product"
+                  title="Our product"
+                  className="font-medium tracking-wide text-gray-700 transition-colors duration-200 hover:text-deep-purple-accent-400"
+                >
+                  Myorders
+                </Link>
+              </li>
+
+              <li>
+                <Link
+                  to="/addproducts"
                   aria-label="Product pricing"
                   title="Product pricing"
                   className="font-medium tracking-wide text-gray-700 transition-colors duration-200 hover:text-deep-purple-accent-400"
                 >
-                  AddService
+                  AddProducts
                 </Link>
               </li>
               <li>
