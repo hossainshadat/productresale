@@ -54,24 +54,24 @@ const Navbar = () => {
             </a>
           </li>
           <li>
-            <a
-              href="/"
+            <Link
+              to="/myorders"
               aria-label="Our product"
               title="Our product"
               className="font-medium tracking-wide text-gray-700 transition-colors duration-200 hover:text-deep-purple-accent-400"
             >
-              Features
-            </a>
+              Myorders
+            </Link>
           </li>
           <li>
-            <a
-              href="/"
+            <Link
+              to="/blog"
               aria-label="Product pricing"
               title="Product pricing"
               className="font-medium tracking-wide text-gray-700 transition-colors duration-200 hover:text-deep-purple-accent-400"
             >
-              Pricing
-            </a>
+              Blog
+            </Link>
           </li>
           {user?.email ? (
             <>

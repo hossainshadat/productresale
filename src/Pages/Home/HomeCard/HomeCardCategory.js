@@ -14,7 +14,7 @@ const HomeCardCategory = ({ brand }) => {
       <div className="relative p-5 bg-white rounded-sm">
         <div className="flex flex-col mb-2 lg:items-center lg:flex-row">
           <div className="flex items-center justify-center w-10 h-10 mb-4 mr-2 rounded-full bg-indigo-50 lg:mb-0">
-            <img src={image} alt="" srcset="" />
+            <img src={image} alt="" srcSet="" />
           </div>
           <h6 className="font-semibold leading-5">{name}</h6>
         </div>

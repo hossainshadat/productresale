@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { useLoaderData } from "react-router-dom";
-import CategoryModal from "../../components/CategoryModal";
+import CategoryModal from "./CategoryModal";
 import CategoryCard from "./CategoryCard";
 
 const CategoryProduct = () => {

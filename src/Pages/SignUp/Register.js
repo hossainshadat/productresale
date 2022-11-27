@@ -2,11 +2,16 @@ import React, { useContext } from "react";
 import { useForm } from "react-hook-form";
 import { AuthContext } from "../../contexts/AuthProvider/AuthProvider";
 import { toast } from "react-toastify";
+import { useLocation, useNavigate } from "react-router-dom";
 
 const Register = () => {
   const { register, handleSubmit, reset } = useForm();
   const { createUser, updateNamePhoto } = useContext(AuthContext);
   const imageHostKey = process.env.REACT_APP_imgbb_key;
+
+  const navigate = useNavigate();
+  const location = useLocation();
+  const from = location.state?.from?.pathname || "/";
 
   const handleRegister = (data) => {
     const img = data.image[0];
@@ -33,10 +38,13 @@ const Register = () => {
               const user = userCredential.user;
 
               toast.success("User created Successfully");
-              //   form.reset();
+              navigate(from, { replace: true });
               // User Name and Photo Updated
               updateNamePhoto(name, image)
-                .then(() => toast.success("Updated Name and Photo"))
+                .then(() => {
+                  toast.success("Updated Name and Photo");
+                  navigate(from, { replace: true });
+                })
                 .catch((err) => toast.error(err));
             })
             .catch((error) => {
@@ -98,7 +106,9 @@ const Register = () => {
               required
             >
               <option value="seller">Seller</option>
-              <option value="buyer">Buyer</option>
+              <option value="buyer" selected>
+                Buyer
+              </option>
             </select>
           </div>
           <div>
