@@ -5,7 +5,7 @@ import { toast } from "react-toastify";
 import { useLocation, useNavigate } from "react-router-dom";
 
 const Register = () => {
-  const { register, handleSubmit, reset } = useForm();
+  const { register, handleSubmit } = useForm();
   const { createUser, updateNamePhoto } = useContext(AuthContext);
   const imageHostKey = process.env.REACT_APP_imgbb_key;
 

@@ -26,9 +26,9 @@ const BookingProduct = ({ booking }) => {
         <p>${productPrice}</p>
       </td>
       <td className="p-3 text-right">
-        <span className="px-3 py-1 font-semibold rounded-md dark:bg-violet-400 dark:text-gray-900">
-          <span>Pending</span>
-        </span>
+        <button className="px-3 py-2 font-semibold rounded-md dark:bg-violet-400 dark:text-gray-900">
+          pay now
+        </button>
       </td>
     </tr>
   );

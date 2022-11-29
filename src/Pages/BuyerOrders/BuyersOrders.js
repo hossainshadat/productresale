@@ -8,7 +8,7 @@ const BuyersOrders = () => {
   const { user } = useContext(AuthContext);
   const {
     isLoading,
-    error,
+    
     data: bookingData = [],
   } = useQuery({
     queryKey: ["booking"],
