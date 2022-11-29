@@ -48,14 +48,27 @@ const CategoryProduct = () => {
       </div>
       <div className="px-4 mx-auto sm:max-w-xl md:max-w-full lg:max-w-screen-xl md:px-24 lg:px-8 ">
         <div className="grid gap-8 lg:grid-cols-3 sm:max-w-sm sm:mx-auto lg:max-w-full">
-          {data.map((category) => (
-            <CategoryCard
-              key={category._id}
-              category={category}
-              handleModal={handleModal}
-            />
-          ))}
-          <CategoryModal singleProduct={singleProduct} />
+          {data.length !== 0 ? (
+            <>
+              {data.map((category) => (
+                <CategoryCard
+                  key={category._id}
+                  category={category}
+                  handleModal={handleModal}
+                />
+              ))}
+              <CategoryModal singleProduct={singleProduct} />
+            </>
+          ) : (
+            <>
+              <h2 className="max-w-lg mb-6 font-sans text-3xl font-bold leading-none tracking-tight text-gray-900 sm:text-4xl md:mx-auto">
+                <span className="relative inline-block">
+                  <span className="relative">No Products</span>
+                </span>{" "}
+                Found 🔥
+              </h2>
+            </>
+          )}
         </div>
       </div>
     </div>

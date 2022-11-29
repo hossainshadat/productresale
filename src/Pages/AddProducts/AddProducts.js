@@ -1,10 +1,12 @@
 import axios from "axios";
 import React, { useContext, useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import { AuthContext } from "../../contexts/AuthProvider/AuthProvider";
 
 const AddProducts = () => {
   const { user } = useContext(AuthContext);
+  const navigate = useNavigate();
   const [categories, setCategories] = useState([]);
   const [imageUrl, setImageUrl] = useState("");
   const imageHostKey = process.env.REACT_APP_imgbb_key;
@@ -51,7 +53,6 @@ const AddProducts = () => {
     })
       .then((res) => res.json())
       .then((result) => {
-        // console.log(result);
         if (result.success) {
           setImageUrl(result.data.url);
         }
@@ -71,7 +72,6 @@ const AddProducts = () => {
       post_date,
       brand,
     };
-    console.log(products);
 
     fetch("http://localhost:5000/productcategory", {
       method: "POST",
@@ -82,10 +82,10 @@ const AddProducts = () => {
     })
       .then((res) => res.json())
       .then((data) => {
-        console.log(data);
-        if (data.acknowledged) {
+        if (data.data.acknowledged) {
           toast.success("Successfully add products");
           form.reset();
+          navigate("/myproducts");
         }
       })
       .catch((er) => toast.error(er));

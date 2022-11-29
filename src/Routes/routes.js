@@ -8,6 +8,7 @@ import PrivateRoutes from "./PrivateRoute";
 import Blog from "../Pages/Blog/Blog";
 import BuyersOrders from "../Pages/BuyerOrders/BuyersOrders";
 import AddProducts from "../Pages/AddProducts/AddProducts";
+import MyProduct from "../Pages/MyProduct/MyProduct";
 
 const { createBrowserRouter } = require("react-router-dom");
 
@@ -38,6 +39,14 @@ const routes = createBrowserRouter([
         element: (
           <PrivateRoutes>
             <AddProducts />
+          </PrivateRoutes>
+        ),
+      },
+      {
+        path: "/myproducts",
+        element: (
+          <PrivateRoutes>
+            <MyProduct />
           </PrivateRoutes>
         ),
       },
