@@ -13,65 +13,6 @@ const HomeCategory = () => {
 
   useEffect(() => getCategory(), []);
 
-  const category = [
-    {
-      id: "01",
-      name: "Apple",
-      image:
-        "https://yt3.ggpht.com/ytc/AMLnZu9GlNEvcXPblRUvW11GS3buDikRNugBjnPlZ_1rew=s900-c-k-c0x00ffffff-no-rj",
-      description:
-        "Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque rem aperiam.",
-    },
-    {
-      id: "02",
-      name: "Acer",
-      image:
-        "https://e7.pngegg.com/pngimages/748/924/png-clipart-acer-logo-laptop-acer-aspire-computer-logo-lenovo-logo-electronics-text.png",
-      description:
-        "Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque rem aperiam.",
-    },
-    {
-      id: "03",
-      name: "Javascript Guideline",
-      image:
-        "https://www.freeiconspng.com/thumbs/dell-logo-icon-png/dell-icon-11.jpg",
-      description:
-        "Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque rem aperiam.",
-    },
-    {
-      id: "04",
-      name: "React (Hook , React Router)",
-      image:
-        "https://yt3.ggpht.com/ytc/AMLnZu9GlNEvcXPblRUvW11GS3buDikRNugBjnPlZ_1rew=s900-c-k-c0x00ffffff-no-rj",
-      description:
-        "Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque rem aperiam.",
-    },
-    {
-      id: "05",
-      name: "React With Firebase",
-      image:
-        "https://yt3.ggpht.com/ytc/AMLnZu9GlNEvcXPblRUvW11GS3buDikRNugBjnPlZ_1rew=s900-c-k-c0x00ffffff-no-rj",
-      description:
-        "Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque rem aperiam.",
-    },
-    {
-      id: "06",
-      name: "Node,React, Express, MongoDB",
-      image:
-        "https://yt3.ggpht.com/ytc/AMLnZu9GlNEvcXPblRUvW11GS3buDikRNugBjnPlZ_1rew=s900-c-k-c0x00ffffff-no-rj",
-      description:
-        "Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque rem aperiam.",
-    },
-    {
-      id: "07",
-      name: "All Course",
-      image:
-        "https://yt3.ggpht.com/ytc/AMLnZu9GlNEvcXPblRUvW11GS3buDikRNugBjnPlZ_1rew=s900-c-k-c0x00ffffff-no-rj",
-      description:
-        "Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque rem aperiam.",
-    },
-  ];
-
   return (
     <div className="px-4 py-16 mx-auto sm:max-w-xl md:max-w-full lg:max-w-screen-xl md:px-24 lg:px-8 lg:py-20">
       <div className="max-w-xl mb-10 md:mx-auto sm:text-center lg:max-w-2xl md:mb-12">

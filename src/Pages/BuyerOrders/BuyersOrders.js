@@ -6,11 +6,7 @@ import BookingProduct from "./BookingProduct";
 
 const BuyersOrders = () => {
   const { user } = useContext(AuthContext);
-  const {
-    isLoading,
-    
-    data: bookingData = [],
-  } = useQuery({
+  const { isLoading, data: bookingData = [] } = useQuery({
     queryKey: ["booking"],
     queryFn: () =>
       fetch(`http://localhost:5000/booking?email=${user?.email}`).then((res) =>

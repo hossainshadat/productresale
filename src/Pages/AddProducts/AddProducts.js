@@ -8,7 +8,6 @@ const AddProducts = () => {
   const { user } = useContext(AuthContext);
   const navigate = useNavigate();
   const [categories, setCategories] = useState([]);
-  const [imageUrl, setImageUrl] = useState("");
   const imageHostKey = process.env.REACT_APP_imgbb_key;
 
   const getCategory = () => {
@@ -54,44 +53,43 @@ const AddProducts = () => {
       .then((res) => res.json())
       .then((result) => {
         if (result.success) {
-          setImageUrl(result.data.url);
+          const products = {
+            category_id,
+            image_url: result.data.url,
+            title: productDesc,
+            condition,
+            resalePrice,
+            originalPrice,
+            yearsOfUse,
+            phoneNumber,
+            location,
+            sellerName: user.displayName,
+            post_date,
+            brand,
+            email: user.email,
+          };
+          fetch("http://localhost:5000/productcategory", {
+            method: "POST",
+            headers: {
+              "content-type": "application/json",
+            },
+            body: JSON.stringify(products),
+          })
+            .then((res) => res.json())
+            .then((data) => {
+              if (data.data.acknowledged) {
+                toast.success("Successfully add products");
+                form.reset();
+                navigate("/myproducts");
+              }
+            })
+            .catch((er) => toast.error(er));
         }
       });
 
-    const products = {
-      category_id,
-      image_url: imageUrl,
-      title: productDesc,
-      condition,
-      resalePrice,
-      originalPrice,
-      yearsOfUse,
-      phoneNumber,
-      location,
-      sellerName: user.displayName,
-      post_date,
-      brand,
-    };
-
-    fetch("http://localhost:5000/productcategory", {
-      method: "POST",
-      headers: {
-        "content-type": "application/json",
-      },
-      body: JSON.stringify(products),
-    })
-      .then((res) => res.json())
-      .then((data) => {
-        if (data.data.acknowledged) {
-          toast.success("Successfully add products");
-          form.reset();
-          navigate("/myproducts");
-        }
-      })
-      .catch((er) => toast.error(er));
-
     // toast.success("Successfully add products");
   };
+
   return (
     <section className="p-6 dark:text-gray-100">
       <form
@@ -243,7 +241,7 @@ const AddProducts = () => {
         <div>
           <button
             type="submit"
-            className="w-full px-4 py-2 font-bold rounded shadow focus:outline-none focus:ring hover:ring focus:ring-opacity-50 bg-yellow-400 focus:ring-violet-400 hover:bg-yellow-600 dark:text-gray-900"
+            className="w-full px-4 py-2 font-bold rounded shadow focus:outline-none focus:ring hover:ring focus:ring-opacity-50 bg-deep-purple-accent-700 focus:ring-violet-400 hover:bg-deep-purple-accent-400 dark:text-gray-100"
           >
             Add Products
           </button>
