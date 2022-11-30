@@ -23,8 +23,26 @@ const MyProduct = () => {
     return <LoadingSpinner />;
   }
 
+  const handleAdvertise = (id) => {
+    const productItem = myproducts.data.find((item) => item._id === id);
+
+    fetch("http://localhost:5000/advertise", {
+      method: "POST",
+      headers: {
+        "content-type": "application/json",
+      },
+      body: JSON.stringify(productItem),
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        if (data.data.acknowledged) {
+          toast.success("Successfully add products");
+        }
+      })
+      .catch((er) => toast.error(er));
+  };
+
   const handleDelete = (id) => {
-    console.log(id);
     const proceed = window.confirm(
       "Are you sure, you want to cancel this Product"
     );
@@ -69,6 +87,7 @@ const MyProduct = () => {
                 info={info}
                 refetch={refetch}
                 handleDelete={handleDelete}
+                handleAdvertise={handleAdvertise}
               />
             ))}
           </tbody>

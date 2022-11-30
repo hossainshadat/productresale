@@ -1,6 +1,6 @@
 import React from "react";
 
-const MyProductInfo = ({ info, handleDelete }) => {
+const MyProductInfo = ({ info, handleDelete, handleAdvertise }) => {
   const {
     _id,
     brand: brandName,
@@ -35,7 +35,10 @@ const MyProductInfo = ({ info, handleDelete }) => {
         <p>${productPrice}</p>
       </td>
       <td className="p-3 text-right">
-        <button className="mr-2 px-3 py-2 font-semibold rounded-md dark:bg-orange-400 dark:text-gray-900">
+        <button
+          onClick={() => handleAdvertise(_id)}
+          className="mr-2 px-3 py-2 font-semibold rounded-md dark:bg-orange-400 dark:text-gray-900"
+        >
           advertise
         </button>
         <button
