@@ -3,6 +3,7 @@ import { useForm } from "react-hook-form";
 import { AuthContext } from "../../contexts/AuthProvider/AuthProvider";
 import { toast } from "react-toastify";
 import { useLocation, useNavigate } from "react-router-dom";
+import SavedUser from "../../Utility/SavedUser";
 
 const Register = () => {
   const { register, handleSubmit } = useForm();
@@ -29,7 +30,7 @@ const Register = () => {
         if (result.success) {
           data.image = result.data.url;
 
-          const { name, image, email, password } = data;
+          const { name, image, email, password, accType } = data;
 
           // CreateUser
 
@@ -42,8 +43,8 @@ const Register = () => {
               // User Name and Photo Updated
               updateNamePhoto(name, image)
                 .then(() => {
+                  SavedUser(name, email, accType);
                   toast.success("Updated Name and Photo");
-                  navigate(from, { replace: true });
                 })
                 .catch((err) => toast.error(err));
             })
@@ -52,6 +53,27 @@ const Register = () => {
             });
         }
       });
+
+    const SavedUser = (name, email, accType) => {
+      const user = { name, email, accType };
+      console.log(user);
+
+      fetch("http://localhost:5000/users", {
+        method: "post",
+        headers: {
+          "content-type": "application/json",
+        },
+        body: JSON.stringify(user),
+      })
+        .then((res) => res.json())
+        .then((data) => {
+          if (data.data.acknowledged) {
+            toast.success("Successfully SignUp");
+            navigate(from, { replace: true });
+          }
+        })
+        .catch((er) => toast.error(er));
+    };
   };
 
   return (

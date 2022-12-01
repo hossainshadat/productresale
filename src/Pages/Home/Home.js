@@ -7,10 +7,9 @@ import Stats from "./Stats";
 
 const Home = () => {
   const [advertise, setAdvertise] = useState([]);
-  console.log(advertise);
   const getAdvertise = () => {
     axios.get("http://localhost:5000/advertise").then((res) => {
-      setAdvertise(res.data.data);
+      setAdvertise(res?.data?.data);
     });
   };
 
@@ -18,7 +17,7 @@ const Home = () => {
   return (
     <div>
       <Banner />
-      {advertise.length > 0 ? (
+      {advertise?.length > 0 ? (
         <>
           (<AdvertisedItems advertise={advertise} />)
         </>

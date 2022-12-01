@@ -2,7 +2,7 @@ import React from "react";
 import { FcApproval } from "react-icons/fc";
 const CategoryCard = ({ category, handleModal }) => {
   const {
-    brandName,
+    brand,
     image_url,
     location,
     originalPrice,
@@ -33,7 +33,7 @@ const CategoryCard = ({ category, handleModal }) => {
             title="Visit the East"
             className="inline-block mb-3 text-2xl font-bold leading-5 transition-colors duration-200 hover:text-deep-purple-accent-700"
           >
-            {brandName}
+            {brand}
           </a>
           <p className="mb-2 text-gray-700">{title}</p>
           <p className="mb-3 text-xs font-semibold tracking-wide uppercase">

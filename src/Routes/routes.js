@@ -9,6 +9,9 @@ import Blog from "../Pages/Blog/Blog";
 import BuyersOrders from "../Pages/BuyerOrders/BuyersOrders";
 import AddProducts from "../Pages/AddProducts/AddProducts";
 import MyProduct from "../Pages/MyProduct/MyProduct";
+import Dashboard from "../Layout/DashboardLayout";
+import DashboardLayout from "../Layout/DashboardLayout";
+import Dashboardcontent from "../Pages/Dashboard/Dashboardcontent";
 
 const { createBrowserRouter } = require("react-router-dom");
 
@@ -69,6 +72,20 @@ const routes = createBrowserRouter([
           fetch(
             `http://localhost:5000/productcategory?category_id=${params.id}`
           ),
+      },
+    ],
+  },
+  {
+    path: "/dashboard",
+    element: (
+      <PrivateRoutes>
+        <DashboardLayout />
+      </PrivateRoutes>
+    ),
+    children: [
+      {
+        path: "/dashboard",
+        element: <Dashboardcontent />,
       },
     ],
   },

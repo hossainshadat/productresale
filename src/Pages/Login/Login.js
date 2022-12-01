@@ -6,7 +6,7 @@ import { AuthContext } from "../../contexts/AuthProvider/AuthProvider";
 
 const Login = () => {
   const { register, handleSubmit } = useForm();
-  const { login, googleLogIn } = useContext(AuthContext);
+  const { login, googleLogIn, user } = useContext(AuthContext);
 
   const navigate = useNavigate();
   const location = useLocation();
@@ -27,12 +27,57 @@ const Login = () => {
 
   const handleGoogleLogIn = () => {
     googleLogIn()
-      .then(() => {
-        toast.success("Success Fully Login");
-        navigate(from, { replace: true });
+      .then((data) => {
+        // console.log(data.user.displayName);
+        SavedUser(data.user.displayName, data.user.email, "buyer");
       })
       .catch((err) => toast.error(err));
   };
+
+  const SavedUser = (name, email, accType) => {
+    const user = { name, email, accType };
+    console.log(user);
+
+    fetch("http://localhost:5000/users", {
+      method: "post",
+      headers: {
+        "content-type": "application/json",
+      },
+      body: JSON.stringify(user),
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        if (data.data.acknowledged) {
+          toast.success("Success Fully Login");
+          navigate(from, { replace: true });
+        }
+      })
+      .catch((er) => toast.error(er));
+  };
+
+  // app.put("/users/:email", async (req, res) => {
+  //   try {
+  //     const email = req.params.email;
+  //     const user = req.body;
+  //     const filter = { email: email };
+  //     const options = { upsert: true };
+  //     const updateDoc = {
+  //       $set: user,
+  //     };
+  //     const result = await Users.updateOne(filter, updateDoc, options);
+
+  //     res.send({
+  //       success: true,
+  //       message: "Successfully add the Data",
+  //       data: result,
+  //     });
+  //   } catch (error) {
+  //     res.send({
+  //       success: false,
+  //       message: error.message,
+  //     });
+  //   }
+  // });
 
   //   const onSubmit = (data) => console.log(data);
   return (

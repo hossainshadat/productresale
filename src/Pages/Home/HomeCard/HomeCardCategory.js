@@ -4,7 +4,6 @@ import PrimaryButton from "../../../components/PrimaryButton";
 
 const HomeCardCategory = ({ brand }) => {
   const { name, image, description, _id } = brand;
-  // console.log(brand);
   return (
     <div className="relative p-px overflow-hidden transition duration-300 transform border rounded shadow-sm hover:scale-105 group hover:shadow-xl">
       <div className="absolute bottom-0 left-0 w-full h-1 duration-300 origin-left transform scale-x-0 bg-deep-purple-accent-400 group-hover:scale-x-100" />
