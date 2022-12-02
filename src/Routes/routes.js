@@ -9,7 +9,6 @@ import Blog from "../Pages/Blog/Blog";
 import BuyersOrders from "../Pages/BuyerOrders/BuyersOrders";
 import AddProducts from "../Pages/AddProducts/AddProducts";
 import MyProduct from "../Pages/MyProduct/MyProduct";
-import Dashboard from "../Layout/DashboardLayout";
 import DashboardLayout from "../Layout/DashboardLayout";
 import Dashboardcontent from "../Pages/Dashboard/Dashboardcontent";
 import AllUser from "../Pages/Dashboard/AllUser";
@@ -72,7 +71,7 @@ const routes = createBrowserRouter([
         ),
         loader: ({ params }) =>
           fetch(
-            `http://localhost:5000/productcategory?category_id=${params.id}`
+            `https://resalemarketserver.vercel.app/productcategory?category_id=${params.id}`
           ),
       },
     ],
@@ -90,7 +89,7 @@ const routes = createBrowserRouter([
       {
         path: "/dashboard",
         element: <AllUser />,
-        loader: () => fetch("http://localhost:5000/users"),
+        loader: () => fetch("https://resalemarketserver.vercel.app/users"),
       },
       {
         path: "/dashboard/others",

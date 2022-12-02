@@ -20,9 +20,9 @@ const Navbar = () => {
   const { isLoading, data: userData = [] } = useQuery({
     queryKey: ["users"],
     queryFn: () =>
-      fetch(`http://localhost:5000/users?email=${user?.email}`).then((res) =>
-        res.json()
-      ),
+      fetch(
+        `https://resalemarketserver.vercel.app/users?email=${user?.email}`
+      ).then((res) => res.json()),
   });
   // console.log(userData?.data[0]?.accType);
   if (isLoading) {
@@ -177,56 +177,41 @@ const Navbar = () => {
           )}
         </ul>
         <div className="lg:hidden">
-          <label
-            htmlFor="dashboard-drawer"
-            tabIndex={0}
-            className="lg:hidden btn btn-ghost btn-circle"
-          >
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              className="h-5 w-5"
-              fill="none"
-              viewBox="0 0 24 24"
-              stroke="currentColor"
+          {userData?.data[0]?.accType === "admin" && (
+            <label
+              htmlFor="dashboard-drawer"
+              tabIndex={0}
+              className="lg:hidden btn btn-ghost btn-circle"
             >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth="2"
-                d="M4 6h16M4 12h16M4 18h7"
-              />
-            </svg>
-          </label>
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                className="h-5 w-5"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth="2"
+                  d="M4 6h16M4 12h16M4 18h7"
+                />
+              </svg>
+            </label>
+          )}
           {isMenuOpen && (
             <div className="absolute top-0 left-0 w-full">
               <div className="p-5 bg-white border rounded shadow-sm">
                 <div className="flex items-center justify-between mb-4">
                   <div>
-                    <a
-                      href="/"
+                    <Link
+                      to="/"
                       aria-label="Company"
                       title="Company"
                       className="inline-flex items-center"
                     >
-                      <svg
-                        className="w-8 text-deep-purple-accent-400"
-                        viewBox="0 0 24 24"
-                        strokeLinejoin="round"
-                        strokeWidth="2"
-                        strokeLinecap="round"
-                        strokeMiterlimit="10"
-                        stroke="currentColor"
-                        fill="none"
-                      >
-                        <rect x="3" y="1" width="7" height="12" />
-                        <rect x="3" y="17" width="7" height="6" />
-                        <rect x="14" y="1" width="7" height="6" />
-                        <rect x="14" y="11" width="7" height="12" />
-                      </svg>
-                      <span className="ml-2 text-xl font-bold tracking-wide text-gray-800 uppercase">
-                        Company
-                      </span>
-                    </a>
+                      <img src={logo} alt="Logo" />
+                    </Link>
                   </div>
                   <div>
                     <button
@@ -247,55 +232,117 @@ const Navbar = () => {
                 <nav>
                   <ul className="space-y-4">
                     <li>
-                      <a
-                        href="/"
-                        aria-label="Our product"
-                        title="Our product"
-                        className="font-medium tracking-wide text-gray-700 transition-colors duration-200 hover:text-deep-purple-accent-400"
-                      >
-                        Product
-                      </a>
-                    </li>
-                    <li>
-                      <a
-                        href="/"
-                        aria-label="Our product"
-                        title="Our product"
-                        className="font-medium tracking-wide text-gray-700 transition-colors duration-200 hover:text-deep-purple-accent-400"
-                      >
-                        Features
-                      </a>
-                    </li>
-                    <li>
-                      <a
-                        href="/"
+                      <Link
+                        to="/blog"
                         aria-label="Product pricing"
                         title="Product pricing"
                         className="font-medium tracking-wide text-gray-700 transition-colors duration-200 hover:text-deep-purple-accent-400"
                       >
-                        Pricing
-                      </a>
+                        Blog
+                      </Link>
                     </li>
-                    <li>
-                      <a
-                        href="/"
-                        aria-label="About us"
-                        title="About us"
-                        className="font-medium tracking-wide text-gray-700 transition-colors duration-200 hover:text-deep-purple-accent-400"
-                      >
-                        About us
-                      </a>
-                    </li>
-                    <li>
-                      <a
-                        href="/"
-                        className="inline-flex items-center justify-center w-full h-12 px-6 font-medium tracking-wide text-white transition duration-200 rounded shadow-md bg-deep-purple-accent-400 hover:bg-deep-purple-accent-700 focus:shadow-outline focus:outline-none"
-                        aria-label="Sign up"
-                        title="Sign up"
-                      >
-                        Sign up
-                      </a>
-                    </li>
+                    {user?.email ? (
+                      <>
+                        {userData?.data[0]?.accType === "admin" && (
+                          <li>
+                            <Link
+                              to="/dashboard"
+                              aria-label="Our product"
+                              title="Our product"
+                              className="font-medium tracking-wide text-gray-700 transition-colors duration-200 hover:text-deep-purple-accent-400"
+                            >
+                              Dashboard
+                            </Link>
+                          </li>
+                        )}
+
+                        {userData?.data[0]?.accType === "seller" && (
+                          <>
+                            <li>
+                              <Link
+                                to="/addproducts"
+                                aria-label="Product pricing"
+                                title="Product pricing"
+                                className="font-medium tracking-wide text-gray-700 transition-colors duration-200 hover:text-deep-purple-accent-400"
+                              >
+                                AddProducts
+                              </Link>
+                            </li>
+                            <li>
+                              <Link
+                                to="/myproducts"
+                                aria-label="Product pricing"
+                                title="Product pricing"
+                                className="font-medium tracking-wide text-gray-700 transition-colors duration-200 hover:text-deep-purple-accent-400"
+                              >
+                                My Products
+                              </Link>
+                            </li>
+                          </>
+                        )}
+
+                        {userData?.data[0]?.accType === "buyer" && (
+                          <li>
+                            <Link
+                              to="/myorders"
+                              aria-label="Our product"
+                              title="Our product"
+                              className="font-medium tracking-wide text-gray-700 transition-colors duration-200 hover:text-deep-purple-accent-400"
+                            >
+                              Myorders
+                            </Link>
+                          </li>
+                        )}
+
+                        <li>
+                          <Link
+                            to="/login"
+                            aria-label="About us"
+                            title={user.displayName}
+                            className="font-medium tracking-wide text-gray-700 transition-colors duration-200 hover:text-deep-purple-accent-400"
+                          >
+                            <img
+                              alt=""
+                              className="w-12 h-12 rounded-full ring-2 ring-offset-4 dark:bg-gray-500 ring-violet-400 ring-offset-gray-800"
+                              src={user.photoURL}
+                            />
+                          </Link>
+                        </li>
+                        <li>
+                          <Link
+                            onClick={handleLogOut}
+                            aria-label="About us"
+                            title="About us"
+                            className="font-medium tracking-wide text-gray-700 transition-colors duration-200 hover:text-deep-purple-accent-400"
+                          >
+                            Logout
+                          </Link>
+                        </li>
+                      </>
+                    ) : (
+                      <>
+                        <li>
+                          <Link
+                            to="/login"
+                            aria-label="About us"
+                            title="About us"
+                            className="font-medium tracking-wide text-gray-700 transition-colors duration-200 hover:text-deep-purple-accent-400"
+                          >
+                            Login
+                          </Link>
+                        </li>
+                        <li>
+                          <Link
+                            to="/register"
+                            className="inline-flex items-center justify-center h-12 px-6 font-medium tracking-wide text-white transition duration-200 rounded shadow-md bg-deep-purple-accent-400 hover:bg-deep-purple-accent-700 focus:shadow-outline focus:outline-none"
+                            aria-label="Sign up"
+                            title="Sign up"
+                          >
+                            Sign up
+                          </Link>
+                        </li>
+                      </>
+                    )}
                   </ul>
                 </nav>
               </div>

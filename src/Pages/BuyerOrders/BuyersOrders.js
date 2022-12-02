@@ -9,9 +9,9 @@ const BuyersOrders = () => {
   const { isLoading, data: bookingData = [] } = useQuery({
     queryKey: ["booking"],
     queryFn: () =>
-      fetch(`http://localhost:5000/booking?email=${user?.email}`).then((res) =>
-        res.json()
-      ),
+      fetch(
+        `https://resalemarketserver.vercel.app/booking?email=${user?.email}`
+      ).then((res) => res.json()),
   });
 
   if (isLoading) {

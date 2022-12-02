@@ -10,7 +10,7 @@ const AllUser = () => {
   const [user, setUser] = useState(null);
 
   useEffect(() => {
-    fetch(`http://localhost:5000/users`)
+    fetch(`https://resalemarketserver.vercel.app/users`)
       .then((res) => res.json())
       .then((userData) => setUser(userData));
   }, [user]);
@@ -20,7 +20,7 @@ const AllUser = () => {
       "Are you sure, you want to cancel this review"
     );
     if (proceed) {
-      fetch(`http://localhost:5000/users/${id}`, {
+      fetch(`https://resalemarketserver.vercel.app/users/${id}`, {
         method: "DELETE",
       })
         .then((res) => res.json())

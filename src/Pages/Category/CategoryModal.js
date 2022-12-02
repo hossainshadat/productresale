@@ -35,7 +35,7 @@ const CategoryModal = ({ singleProduct }) => {
       bookingDate,
     };
 
-    fetch("http://localhost:5000/booking", {
+    fetch("https://resalemarketserver.vercel.app/booking", {
       method: "POST",
       headers: {
         "content-type": "application/json",
@@ -211,11 +211,6 @@ const CategoryModal = ({ singleProduct }) => {
               </div>
             </form>
           </section>
-          {/* <div className="modal-action">
-            <label htmlFor="my-modal" className="btn">
-              Yay!
-            </label>
-          </div> */}
         </div>
       </div>
     </div>

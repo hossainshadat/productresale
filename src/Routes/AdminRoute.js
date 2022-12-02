@@ -11,9 +11,9 @@ const AdminRoutes = ({ children }) => {
   const { isLoading, data: userData = [] } = useQuery({
     queryKey: ["users"],
     queryFn: () =>
-      fetch(`http://localhost:5000/users?email=${user?.email}`).then((res) =>
-        res.json()
-      ),
+      fetch(
+        `https://resalemarketserver.vercel.app/users?email=${user?.email}`
+      ).then((res) => res.json()),
   });
   console.log(userData?.data[0].accType);
   if (isLoading) {

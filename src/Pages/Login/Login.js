@@ -35,7 +35,7 @@ const Login = () => {
 
   const SavedUser = (name, email, accType) => {
     const currentUser = { name, email, accType };
-    fetch(`http://localhost:5000/users/${currentUser?.email}`, {
+    fetch(`https://resalemarketserver.vercel.app/users/${currentUser?.email}`, {
       method: "PUT",
       headers: {
         "content-type": "application/json",

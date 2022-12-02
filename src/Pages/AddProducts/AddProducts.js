@@ -11,7 +11,7 @@ const AddProducts = () => {
   const imageHostKey = process.env.REACT_APP_imgbb_key;
 
   const getCategory = () => {
-    axios.get("http://localhost:5000/category").then((res) => {
+    axios.get("https://resalemarketserver.vercel.app/category").then((res) => {
       setCategories(res.data.data);
     });
   };
@@ -68,7 +68,7 @@ const AddProducts = () => {
             brand,
             email: user.email,
           };
-          fetch("http://localhost:5000/productcategory", {
+          fetch("https://resalemarketserver.vercel.app/productcategory", {
             method: "POST",
             headers: {
               "content-type": "application/json",

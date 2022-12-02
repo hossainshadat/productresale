@@ -14,9 +14,9 @@ const MyProduct = () => {
   } = useQuery({
     queryKey: ["myproducts"],
     queryFn: () =>
-      fetch(`http://localhost:5000/productcategory?email=${user?.email}`).then(
-        (res) => res.json()
-      ),
+      fetch(
+        `https://resalemarketserver.vercel.app/productcategory?email=${user?.email}`
+      ).then((res) => res.json()),
   });
 
   if (isLoading) {
@@ -26,7 +26,7 @@ const MyProduct = () => {
   const handleAdvertise = (id) => {
     const productItem = myproducts.data.find((item) => item._id === id);
 
-    fetch("http://localhost:5000/advertise", {
+    fetch("https://resalemarketserver.vercel.app/advertise", {
       method: "POST",
       headers: {
         "content-type": "application/json",
@@ -47,7 +47,7 @@ const MyProduct = () => {
       "Are you sure, you want to cancel this Product"
     );
     if (proceed) {
-      fetch(`http://localhost:5000/productcategory/${id}`, {
+      fetch(`https://resalemarketserver.vercel.app/productcategory/${id}`, {
         method: "DELETE",
       })
         .then((res) => res.json())

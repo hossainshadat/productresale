@@ -8,7 +8,7 @@ import Stats from "./Stats";
 const Home = () => {
   const [advertise, setAdvertise] = useState([]);
   const getAdvertise = () => {
-    axios.get("http://localhost:5000/advertise").then((res) => {
+    axios.get("https://resalemarketserver.vercel.app/advertise").then((res) => {
       setAdvertise(res?.data?.data);
     });
   };

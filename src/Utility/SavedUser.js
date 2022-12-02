@@ -9,7 +9,7 @@ const SavedUser = (name, email, accType) => {
   const user = { name, email, accType };
   console.log(user);
 
-  fetch("http://localhost:5000/users", {
+  fetch("https://resalemarketserver.vercel.app/users", {
     method: "POST",
     headers: {
       "content-type": "application/json",

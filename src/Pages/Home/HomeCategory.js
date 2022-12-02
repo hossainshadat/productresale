@@ -6,7 +6,7 @@ const HomeCategory = () => {
   const [categories, setCategories] = useState([]);
 
   const getCategory = () => {
-    axios.get("http://localhost:5000/category").then((res) => {
+    axios.get("https://resalemarketserver.vercel.app/category").then((res) => {
       setCategories(res.data.data);
     });
   };
