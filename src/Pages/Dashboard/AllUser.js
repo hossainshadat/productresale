@@ -8,12 +8,20 @@ import UsersRow from "./UsersRow";
 
 const AllUser = () => {
   const [user, setUser] = useState(null);
+  // console.log(user);
+  const [isVerified, setIsverified] = useState(false);
+  // console.log(user);
 
   useEffect(() => {
     fetch(`https://resalemarketserver.vercel.app/users`)
       .then((res) => res.json())
       .then((userData) => setUser(userData));
   }, [user]);
+
+  const handleVerified = (id) => {
+    setIsverified(!isVerified);
+    console.log(id, isVerified);
+  };
 
   const handleDelete = (id) => {
     const proceed = window.confirm(
@@ -58,6 +66,7 @@ const AllUser = () => {
                 index={i + 1}
                 user={user}
                 handleDelete={handleDelete}
+                handleVerified={handleVerified}
               />
             ))}
           </tbody>

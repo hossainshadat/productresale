@@ -15,12 +15,11 @@ const AdminRoutes = ({ children }) => {
         `https://resalemarketserver.vercel.app/users?email=${user?.email}`
       ).then((res) => res.json()),
   });
-  console.log(userData?.data[0].accType);
-  if (isLoading) {
+  if (loading) {
     return <LoadingSpinner />;
   }
 
-  if (loading) {
+  if (isLoading) {
     return <LoadingSpinner />;
   }
 

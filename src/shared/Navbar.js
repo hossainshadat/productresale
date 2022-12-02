@@ -1,4 +1,4 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { toast } from "react-toastify";
 import { AuthContext } from "./../contexts/AuthProvider/AuthProvider";
@@ -8,8 +8,15 @@ import { useQuery } from "@tanstack/react-query";
 
 const Navbar = () => {
   const { user, logOut } = useContext(AuthContext);
-
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  // console.log(data);
+  const { isLoading, data: userData = [] } = useQuery({
+    queryKey: ["users"],
+    queryFn: async () =>
+      await fetch(
+        `https://resalemarketserver.vercel.app/users?email=${user?.email}`
+      ).then((res) => res.json()),
+  });
 
   const handleLogOut = () => {
     logOut()
@@ -17,13 +24,6 @@ const Navbar = () => {
       .catch((err) => toast.error(err));
   };
 
-  const { isLoading, data: userData = [] } = useQuery({
-    queryKey: ["users"],
-    queryFn: () =>
-      fetch(
-        `https://resalemarketserver.vercel.app/users?email=${user?.email}`
-      ).then((res) => res.json()),
-  });
   // console.log(userData?.data[0]?.accType);
   if (isLoading) {
     return <LoadingSpinner />;
@@ -71,23 +71,11 @@ const Navbar = () => {
               className="font-medium tracking-wide text-gray-700 transition-colors duration-200 hover:text-deep-purple-accent-400"
             >
               Blog
-            </Link>
+            </Link>{" "}
           </li>
+
           {user?.email ? (
             <>
-              {userData?.data[0]?.accType === "admin" && (
-                <li>
-                  <Link
-                    to="/dashboard"
-                    aria-label="Our product"
-                    title="Our product"
-                    className="font-medium tracking-wide text-gray-700 transition-colors duration-200 hover:text-deep-purple-accent-400"
-                  >
-                    Dashboard
-                  </Link>
-                </li>
-              )}
-
               {userData?.data[0]?.accType === "seller" && (
                 <>
                   <li>
@@ -111,6 +99,18 @@ const Navbar = () => {
                     </Link>
                   </li>
                 </>
+              )}
+              {userData?.data[0]?.accType === "admin" && (
+                <li>
+                  <Link
+                    to="/dashboard"
+                    aria-label="Our product"
+                    title="Our product"
+                    className="font-medium tracking-wide text-gray-700 transition-colors duration-200 hover:text-deep-purple-accent-400"
+                  >
+                    Dashboard
+                  </Link>
+                </li>
               )}
 
               {userData?.data[0]?.accType === "buyer" && (
