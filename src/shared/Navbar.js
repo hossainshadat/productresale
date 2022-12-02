@@ -3,6 +3,8 @@ import { Link } from "react-router-dom";
 import { toast } from "react-toastify";
 import { AuthContext } from "./../contexts/AuthProvider/AuthProvider";
 import logo from "../../src/logo.svg";
+import LoadingSpinner from "./LoadingSpinner";
+import { useQuery } from "@tanstack/react-query";
 
 const Navbar = () => {
   const { user, logOut } = useContext(AuthContext);
@@ -14,6 +16,18 @@ const Navbar = () => {
       .then(() => toast.success("Succfully logout"))
       .catch((err) => toast.error(err));
   };
+
+  const { isLoading, data: userData = [] } = useQuery({
+    queryKey: ["users"],
+    queryFn: () =>
+      fetch(`http://localhost:5000/users?email=${user?.email}`).then((res) =>
+        res.json()
+      ),
+  });
+  console.log(userData?.data);
+  if (isLoading) {
+    return <LoadingSpinner />;
+  }
 
   return (
     <div className="px-4 py-5 mx-auto sm:max-w-xl md:max-w-full lg:max-w-screen-xl md:px-24 lg:px-8">

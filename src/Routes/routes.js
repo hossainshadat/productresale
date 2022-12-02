@@ -12,6 +12,7 @@ import MyProduct from "../Pages/MyProduct/MyProduct";
 import Dashboard from "../Layout/DashboardLayout";
 import DashboardLayout from "../Layout/DashboardLayout";
 import Dashboardcontent from "../Pages/Dashboard/Dashboardcontent";
+import AllUser from "../Pages/Dashboard/AllUser";
 
 const { createBrowserRouter } = require("react-router-dom");
 
@@ -85,6 +86,11 @@ const routes = createBrowserRouter([
     children: [
       {
         path: "/dashboard",
+        element: <AllUser />,
+        loader: () => fetch("http://localhost:5000/users"),
+      },
+      {
+        path: "/dashboard/others",
         element: <Dashboardcontent />,
       },
     ],

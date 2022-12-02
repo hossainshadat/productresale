@@ -2,6 +2,7 @@ import React, { useContext } from "react";
 import { useForm } from "react-hook-form";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
+import { setAuthToken } from "../../api/auth";
 import { AuthContext } from "../../contexts/AuthProvider/AuthProvider";
 
 const Login = () => {
@@ -16,9 +17,8 @@ const Login = () => {
     const { email, password } = data;
     login(email, password)
       .then((result) => {
-        const user = result.user;
+        const currentUser = result.user;
 
-        // form.reset();
         toast.success("Successfully Login");
         navigate(from, { replace: true });
       })
@@ -35,51 +35,39 @@ const Login = () => {
   };
 
   const SavedUser = (name, email, accType) => {
-    const user = { name, email, accType };
+    const currentUser = { name, email, accType };
     console.log(user);
 
-    fetch("http://localhost:5000/users", {
-      method: "post",
+    // fetch("http://localhost:5000/users", {
+    //   method: "post",
+    //   headers: {
+    //     "content-type": "application/json",
+    //   },
+    //   body: JSON.stringify(user),
+    // })
+    //   .then((res) => res.json())
+    //   .then((data) => {
+    //     if (data.data.acknowledged) {
+    //       toast.success("Success Fully Login");
+    //       navigate(from, { replace: true });
+    //     }
+    //   })
+    fetch(`http://localhost:5000/users/${currentUser?.email}`, {
+      method: "PUT",
       headers: {
         "content-type": "application/json",
       },
-      body: JSON.stringify(user),
+      body: JSON.stringify(currentUser),
     })
       .then((res) => res.json())
       .then((data) => {
-        if (data.data.acknowledged) {
-          toast.success("Success Fully Login");
-          navigate(from, { replace: true });
-        }
+        console.log(data);
+        toast.success("Success Fully Login");
+        navigate(from, { replace: true });
       })
       .catch((er) => toast.error(er));
   };
 
-  // app.put("/users/:email", async (req, res) => {
-  //   try {
-  //     const email = req.params.email;
-  //     const user = req.body;
-  //     const filter = { email: email };
-  //     const options = { upsert: true };
-  //     const updateDoc = {
-  //       $set: user,
-  //     };
-  //     const result = await Users.updateOne(filter, updateDoc, options);
-
-  //     res.send({
-  //       success: true,
-  //       message: "Successfully add the Data",
-  //       data: result,
-  //     });
-  //   } catch (error) {
-  //     res.send({
-  //       success: false,
-  //       message: error.message,
-  //     });
-  //   }
-  // });
-
-  //   const onSubmit = (data) => console.log(data);
   return (
     <div className="flex mx-auto my-16 flex-col max-w-md p-6 rounded-md sm:p-10 dark:bg-gray-900 dark:text-gray-100">
       <div className="mb-8 text-center">

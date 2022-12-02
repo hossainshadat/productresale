@@ -55,15 +55,15 @@ const Register = () => {
       });
 
     const SavedUser = (name, email, accType) => {
-      const user = { name, email, accType };
-      console.log(user);
+      const currentUser = { name, email, accType };
+      console.log(currentUser);
 
-      fetch("http://localhost:5000/users", {
-        method: "post",
+      fetch(`http://localhost:5000/users/${currentUser?.email}`, {
+        method: "PUT",
         headers: {
           "content-type": "application/json",
         },
-        body: JSON.stringify(user),
+        body: JSON.stringify(currentUser),
       })
         .then((res) => res.json())
         .then((data) => {
