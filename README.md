@@ -4,7 +4,7 @@ React Flat Icon, React router dom, Tailwind css, kitwind , Mamba UI, Meraki UI, 
 
 ## Live Link
 
-Hosted in Firebase -> [Health Coach](https://resaleclient.web.app/)
+Hosted in Firebase -> [Gadget Salvation](https://resaleclient.web.app/)
 
 ## React Router Dom v6.4
 
