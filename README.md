@@ -2,6 +2,12 @@
 
 React Flat Icon, React router dom, Tailwind css, kitwind , Mamba UI, Meraki UI, React Query, Axios , Firebase, Vercel
 
+# Admin ID and Password
+
+adminEmail: <admin@admin.com>
+
+adminPassword: <123456>
+
 ## Live Link
 
 Hosted in Firebase -> [Gadget Salvation](https://resaleclient.web.app/)
