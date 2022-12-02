@@ -24,7 +24,7 @@ const Navbar = () => {
         res.json()
       ),
   });
-  console.log(userData?.data);
+  // console.log(userData?.data[0]?.accType);
   if (isLoading) {
     return <LoadingSpinner />;
   }
@@ -65,17 +65,6 @@ const Navbar = () => {
         <ul className="flex items-center hidden space-x-8 lg:flex">
           <li>
             <Link
-              to="/dashboard"
-              aria-label="Our product"
-              title="Our product"
-              className="font-medium tracking-wide text-gray-700 transition-colors duration-200 hover:text-deep-purple-accent-400"
-            >
-              Dashboard
-            </Link>
-          </li>
-
-          <li>
-            <Link
               to="/blog"
               aria-label="Product pricing"
               title="Product pricing"
@@ -86,37 +75,57 @@ const Navbar = () => {
           </li>
           {user?.email ? (
             <>
-              <li>
-                <Link
-                  to="/myorders"
-                  aria-label="Our product"
-                  title="Our product"
-                  className="font-medium tracking-wide text-gray-700 transition-colors duration-200 hover:text-deep-purple-accent-400"
-                >
-                  Myorders
-                </Link>
-              </li>
+              {userData?.data[0]?.accType === "admin" && (
+                <li>
+                  <Link
+                    to="/dashboard"
+                    aria-label="Our product"
+                    title="Our product"
+                    className="font-medium tracking-wide text-gray-700 transition-colors duration-200 hover:text-deep-purple-accent-400"
+                  >
+                    Dashboard
+                  </Link>
+                </li>
+              )}
 
-              <li>
-                <Link
-                  to="/addproducts"
-                  aria-label="Product pricing"
-                  title="Product pricing"
-                  className="font-medium tracking-wide text-gray-700 transition-colors duration-200 hover:text-deep-purple-accent-400"
-                >
-                  AddProducts
-                </Link>
-              </li>
-              <li>
-                <Link
-                  to="/myproducts"
-                  aria-label="Product pricing"
-                  title="Product pricing"
-                  className="font-medium tracking-wide text-gray-700 transition-colors duration-200 hover:text-deep-purple-accent-400"
-                >
-                  My Products
-                </Link>
-              </li>
+              {userData?.data[0]?.accType === "seller" && (
+                <>
+                  <li>
+                    <Link
+                      to="/addproducts"
+                      aria-label="Product pricing"
+                      title="Product pricing"
+                      className="font-medium tracking-wide text-gray-700 transition-colors duration-200 hover:text-deep-purple-accent-400"
+                    >
+                      AddProducts
+                    </Link>
+                  </li>
+                  <li>
+                    <Link
+                      to="/myproducts"
+                      aria-label="Product pricing"
+                      title="Product pricing"
+                      className="font-medium tracking-wide text-gray-700 transition-colors duration-200 hover:text-deep-purple-accent-400"
+                    >
+                      My Products
+                    </Link>
+                  </li>
+                </>
+              )}
+
+              {userData?.data[0]?.accType === "buyer" && (
+                <li>
+                  <Link
+                    to="/myorders"
+                    aria-label="Our product"
+                    title="Our product"
+                    className="font-medium tracking-wide text-gray-700 transition-colors duration-200 hover:text-deep-purple-accent-400"
+                  >
+                    Myorders
+                  </Link>
+                </li>
+              )}
+
               <li>
                 <Link
                   to="/login"

@@ -3,7 +3,6 @@ import { useForm } from "react-hook-form";
 import { AuthContext } from "../../contexts/AuthProvider/AuthProvider";
 import { toast } from "react-toastify";
 import { useLocation, useNavigate } from "react-router-dom";
-import SavedUser from "../../Utility/SavedUser";
 
 const Register = () => {
   const { register, handleSubmit } = useForm();

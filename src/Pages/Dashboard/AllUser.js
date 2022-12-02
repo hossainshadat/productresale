@@ -1,3 +1,4 @@
+import { useQuery } from "@tanstack/react-query";
 import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { useLoaderData } from "react-router-dom";
@@ -6,8 +7,13 @@ import LoadingSpinner from "../../shared/LoadingSpinner";
 import UsersRow from "./UsersRow";
 
 const AllUser = () => {
-  const data = useLoaderData();
-  console.log(data.data);
+  const [user, setUser] = useState(null);
+
+  useEffect(() => {
+    fetch(`http://localhost:5000/users`)
+      .then((res) => res.json())
+      .then((userData) => setUser(userData));
+  }, [user]);
 
   const handleDelete = (id) => {
     const proceed = window.confirm(
@@ -46,7 +52,7 @@ const AllUser = () => {
             </tr>
           </thead>
           <tbody>
-            {data.data.map((user, i) => (
+            {user?.data.map((user, i) => (
               <UsersRow
                 key={user._id}
                 index={i + 1}

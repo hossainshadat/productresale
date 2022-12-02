@@ -28,7 +28,6 @@ const Login = () => {
   const handleGoogleLogIn = () => {
     googleLogIn()
       .then((data) => {
-        // console.log(data.user.displayName);
         SavedUser(data.user.displayName, data.user.email, "buyer");
       })
       .catch((err) => toast.error(err));
@@ -36,22 +35,6 @@ const Login = () => {
 
   const SavedUser = (name, email, accType) => {
     const currentUser = { name, email, accType };
-    console.log(user);
-
-    // fetch("http://localhost:5000/users", {
-    //   method: "post",
-    //   headers: {
-    //     "content-type": "application/json",
-    //   },
-    //   body: JSON.stringify(user),
-    // })
-    //   .then((res) => res.json())
-    //   .then((data) => {
-    //     if (data.data.acknowledged) {
-    //       toast.success("Success Fully Login");
-    //       navigate(from, { replace: true });
-    //     }
-    //   })
     fetch(`http://localhost:5000/users/${currentUser?.email}`, {
       method: "PUT",
       headers: {

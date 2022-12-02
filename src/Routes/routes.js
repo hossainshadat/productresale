@@ -13,6 +13,7 @@ import Dashboard from "../Layout/DashboardLayout";
 import DashboardLayout from "../Layout/DashboardLayout";
 import Dashboardcontent from "../Pages/Dashboard/Dashboardcontent";
 import AllUser from "../Pages/Dashboard/AllUser";
+import AdminRoutes from "./AdminRoute";
 
 const { createBrowserRouter } = require("react-router-dom");
 
@@ -79,9 +80,11 @@ const routes = createBrowserRouter([
   {
     path: "/dashboard",
     element: (
-      <PrivateRoutes>
-        <DashboardLayout />
-      </PrivateRoutes>
+      <AdminRoutes>
+        <PrivateRoutes>
+          <DashboardLayout />
+        </PrivateRoutes>
+      </AdminRoutes>
     ),
     children: [
       {
